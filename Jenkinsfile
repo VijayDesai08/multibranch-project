@@ -29,7 +29,7 @@ pipeline {
         
         stage('SCAN IMAGE') {
             steps {
-                sh 'trivy image vijay008/demo-project1-${env.BRANCH_NAME}:v$BUILD_NUMBER >> image.txt'
+                sh "trivy image vijay008/demo-project1-${env.BRANCH_NAME}:v$BUILD_NUMBER >> image.txt"
             }
         }
         
