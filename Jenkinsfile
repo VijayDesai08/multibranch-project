@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred') {
-                        sh 'docker build -t vijay008/demo-project1-"${env.BRANCH_NAME}":v$BUILD_NUMBER .'
+                        sh 'docker build -t vijay008/demo-project1-${env.BRANCH_NAME}:v$BUILD_NUMBER .'
                     }
                 }
             }
@@ -29,7 +29,7 @@ pipeline {
         
         stage('SCAN IMAGE') {
             steps {
-                sh 'trivy image vijay008/demo-project1-"${env.BRANCH_NAME}":v$BUILD_NUMBER >> image.txt'
+                sh 'trivy image vijay008/demo-project1-${env.BRANCH_NAME}:v$BUILD_NUMBER >> image.txt'
             }
         }
         
@@ -37,7 +37,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred') {
-                        sh 'docker push vijay008/demo-project1-"${env.BRANCH_NAME}":v$BUILD_NUMBER'
+                        sh 'docker push vijay008/demo-project1-${env.BRANCH_NAME}:v$BUILD_NUMBER'
                     }
                 }
             }
@@ -45,8 +45,8 @@ pipeline {
         
         stage('DEPLOY IMAGE') {
             steps {
-                sh 'docker stop demo-cont-"${env.BRANCH_NAME}"'
-                sh 'docker run --rm --name demo-cont-"${env.BRANCH_NAME}" -d -p 8081:8080 vijay008/demo-project1-"${env.BRANCH_NAME}":v$BUILD_NUMBER'
+                sh 'docker stop demo-cont-${env.BRANCH_NAME}'
+                sh 'docker run --rm --name demo-cont-${env.BRANCH_NAME} -d -p 8081:8080 vijay008/demo-project1-${env.BRANCH_NAME}:v$BUILD_NUMBER'
             }
         }
     }
