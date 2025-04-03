@@ -45,8 +45,8 @@ pipeline {
         
         stage('DEPLOY IMAGE') {
             steps {
-                sh "docker stop demo-cont"
-                sh "docker run --rm --name demo-cont -d -p 8081:8080 vijay008/demo-project1-main:v$BUILD_NUMBER"
+                sh "docker stop demo-cont-main || true"
+                sh "docker run --rm --name demo-cont-main -d -p 8081:8080 vijay008/demo-project1-main:v$BUILD_NUMBER"
             }
         }
     }
