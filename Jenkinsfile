@@ -46,7 +46,7 @@ pipeline {
         stage('DEPLOY IMAGE') {
             steps {
                 sh "docker stop demo-cont-${env.BRANCH_NAME} || true"
-                sh "docker run --rm --name demo-cont-${env.BRANCH_NAME} -d -p 8081:8080 vijay008/demo-project1-${env.BRANCH_NAME}:v$BUILD_NUMBER"
+                sh "docker run --rm --name demo-cont-${env.BRANCH_NAME} -d -p 8083:8080 vijay008/demo-project1-${env.BRANCH_NAME}:v$BUILD_NUMBER"
             }
         }
     }
