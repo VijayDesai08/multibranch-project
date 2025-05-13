@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                git branch: "${env.BRANCH_NAME}", credentialsId: 'git', url: 'https://github.com/VijayDesai08/demo-project1.git'
+                git branch: "${env.BRANCH_NAME}", credentialsId: 'git', url: 'https://github.com/VijayDesai08/multibranch-project.git'
             }
         }
         
