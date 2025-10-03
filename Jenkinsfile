@@ -13,7 +13,7 @@ pipeline {
         
         stage('BUILD WAR FILE') {
             steps {
-                sh '/opt/maven-3.9.9/bin/mvn clean install'
+                sh 'mvn clean install'
             }
         }
     }
